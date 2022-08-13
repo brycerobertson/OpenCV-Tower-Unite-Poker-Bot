@@ -5,7 +5,7 @@ void Detection::filter_contours(std::vector<std::vector<cv::Point>> contours) {
 	filtered_contours.clear();
 	for (size_t i = 0; i < contours.size(); i++) {
 		double area = cv::contourArea(contours[i]);
-		if (area < 1000) {
+		if (area > 10000) {
 			filtered_contours.push_back(contours.at(i));
 		}
 	}
@@ -18,5 +18,5 @@ void Detection::detect_cards()	{
 
 	filter_contours(all_contours);
 
-	cv::drawContours(colour_img, filtered_contours, -1, (255, 0, 255), 4);
+	cv::drawContours(colour_img, filtered_contours, -1, cv::Scalar(255, 0, 255), 2);
 };
