@@ -74,7 +74,7 @@ void Window::copy_window()	{
 		}*/
 
 		colour_img = getMat(hWnd);																//create Mat to copy target to
-		cv::cvtColor(colour_img, greyscale_img, cv::COLOR_BGR2HSV);								//convert target image to another colour space	
+		cv::cvtColor(colour_img, greyscale_img, cv::COLOR_BGRA2GRAY);								//convert target image to another colour space	
 
 };
 
