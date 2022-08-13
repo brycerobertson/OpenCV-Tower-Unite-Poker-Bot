@@ -18,18 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window_copy.cpp">
+    <ClCompile Include="window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="card_detection.cpp">
+    <ClCompile Include="detection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="window_copy.h">
+    <ClInclude Include="window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="card_detection.h">
+    <ClInclude Include="detection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

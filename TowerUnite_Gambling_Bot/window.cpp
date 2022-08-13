@@ -1,4 +1,4 @@
-#include "window_copy.h"
+#include "window.h"
 
 BITMAPINFOHEADER createBitmapHeader(int width, int height) {
 
@@ -54,28 +54,32 @@ cv::Mat getMat(HWND hWnd) {
 };
 
 
-void window_copy::create_window() {
+cv::Mat colour_img;
+cv::Mat greyscale_img;
+cv::Mat greyscale_img_threshhold;
+
+void Window::create_window() {
 
 	LPCWSTR window_title = L"Tower Unite  ";		//set title of window to search for
 	hWnd = FindWindow(NULL, window_title);			//get HWND of window title
 	cv::namedWindow("output", cv::WINDOW_AUTOSIZE); //create window named "output"
 }
 
-void window_copy::copy_window()	{
-	while (key != 27) {
+void Window::copy_window()	{
 
-		HWND temp = GetForegroundWindow();
+		/*HWND temp = GetForegroundWindow();
 		if (temp != hWnd) {
 			Sleep(10);
 			continue;
-		}
+		}*/
 
-		cv::Mat target = getMat(hWnd);																//store hWnd mat to new Mat
-		cv::Mat background;																			//create Mat to copy target to
-		target.copyTo(background);																//copy target Mat to background Mat
-		cv::cvtColor(target, target, cv::COLOR_BGR2HSV);									//convert target image to another colour space	
+		colour_img = getMat(hWnd);																//create Mat to copy target to
+		cv::cvtColor(colour_img, greyscale_img, cv::COLOR_BGR2HSV);								//convert target image to another colour space	
 
-		cv::imshow("output", background);													//show our image inside the created window.
-		key = cv::waitKey(30);																	//wait for any keystroke in the window
-	};
+};
+
+void Window::draw_window() {
+
+	cv::imshow("output", colour_img);													//show our image inside the created window.
+																						
 };
