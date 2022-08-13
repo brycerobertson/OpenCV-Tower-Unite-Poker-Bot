@@ -1,14 +1,21 @@
-#include "window_copy.h"
-#include "card_detection.h"
+#include "window.h"
+#include "detection.h"
 
-window_copy window;
+Window window;
+Detection detection;
+
+int key = 0;
 
 int main(int argc, char** argv)	{
 	
-	window.create_window();
-	window.copy_window();
+	while (key != 27) {
+		window.create_window();
+		window.copy_window();
+		detection.detect_cards();
+		window.draw_window();
 
-
-
+		key = cv::waitKey(30);
+	}
+	
 	return 0;
 }

@@ -133,13 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="card_detection.cpp" />
+    <ClCompile Include="detection.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="window_copy.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="card_detection.h" />
-    <ClInclude Include="window_copy.h" />
+    <ClInclude Include="detection.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

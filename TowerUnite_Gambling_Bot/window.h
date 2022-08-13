@@ -4,8 +4,11 @@
 
 #include <iostream>
 
+extern cv::Mat colour_img;
+extern cv::Mat greyscale_img;
+extern cv::Mat greyscale_img_threshhold;
 
-class window_copy{
+class Window{
 private:
 
 	HWND hWnd;
@@ -13,15 +16,11 @@ private:
 
 public:
 
-	cv::Mat getMat(HWND hWnd) {
-		cv::Mat mat;
-		return mat;
-	}
-
-
 	void create_window();
 
 	void copy_window();
+
+	void draw_window();
 };
 
 
