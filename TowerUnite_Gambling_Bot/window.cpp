@@ -1,4 +1,5 @@
 #include "window.h"
+#include "detection.h"
 
 BITMAPINFOHEADER createBitmapHeader(int width, int height) {
 
@@ -78,8 +79,27 @@ void Window::copy_window()	{
 
 };
 
+cv::Point mouse_pos;
+cv::String mouse_pos_text;
+
+void draw_mouse_coords(int  event, int  x, int  y, int  flags, void* param)
+{
+
+	if (event == cv::EVENT_MOUSEMOVE) {
+
+		mouse_pos = { x+10, y-10 };
+		mouse_pos_text = std::to_string(mouse_pos.x) + " " + std::to_string(mouse_pos.y);
+	}
+};
+
 void Window::draw_window() {
 
+	cv::setMouseCallback("output", draw_mouse_coords);
+	cv::putText(colour_img, mouse_pos_text, mouse_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2, 8, false);
 	cv::imshow("output", colour_img);													//show our image inside the created window.
-																						
+
+	for (int i = 0; i < cards.size(); i++) {
+		cv::namedWindow("card " + std::to_string(i+1), cv::WINDOW_AUTOSIZE);
+		cv::imshow("card 1", cards[i].warp);
+	}
 };
