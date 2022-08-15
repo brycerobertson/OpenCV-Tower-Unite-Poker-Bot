@@ -94,12 +94,10 @@ void draw_mouse_coords(int  event, int  x, int  y, int  flags, void* param)
 
 void Window::draw_window() {
 
-	cv::setMouseCallback("output", draw_mouse_coords);
-	cv::putText(colour_img, mouse_pos_text, mouse_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2, 8, false);
+	//cv::setMouseCallback("output", draw_mouse_coords);
+	//cv::putText(colour_img, mouse_pos_text, mouse_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2, 8, false);
 	cv::imshow("output", colour_img);													//show our image inside the created window.
 
-	for (int i = 0; i < cards.size(); i++) {
-		cv::namedWindow("card " + std::to_string(i+1), cv::WINDOW_AUTOSIZE);
-		cv::imshow("card 1", cards[i].warp);
-	}
+	cv::imshow("card 1", cards[0].warp);
+
 };

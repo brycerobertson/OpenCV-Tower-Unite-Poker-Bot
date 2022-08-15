@@ -17,7 +17,7 @@ void Detection::filter_contours(std::vector<std::vector<cv::Point>> contours, st
 	
 };
 
-void Detection::flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card) {
+auto Detection::flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card) {
 	
 	int maxWidth = 200;
 	int maxHeight = 300;
@@ -46,9 +46,8 @@ void Detection::flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card 
 
 	cv::Mat Matrix = cv::getPerspectiveTransform(src_corners, dst_corners);
 
-	cv::warpPerspective(image, warped_image, Matrix, cv::Size(maxWidth, maxHeight),cv::INTER_LINEAR);
+	cv::warpPerspective(image, card.warp, Matrix, cv::Size(maxWidth, maxHeight),cv::INTER_LINEAR);
 
-	card.warp = warped_image;
 };
 
 void Detection::process_contours(std::vector<std::vector<cv::Point>> sorted_contours) {
@@ -72,32 +71,30 @@ void Detection::process_contours(std::vector<std::vector<cv::Point>> sorted_cont
 			return a.at(1).x < b.at(1).x;
 		});
 
-	
+	cards.clear();
 	for (size_t i = 0; i < sorted_contours.size(); i++) {
-		const Card card
+		Card current_card;
 		
 
-		card.contour.push_back(sorted_contours[i]);
+		current_card.contour= sorted_contours[i];
 		std::vector<cv::Point> approx;
 
 		//find corner points of the card
 		cv::approxPolyDP(sorted_contours[i], approx, cv::arcLength(sorted_contours[i], true) * 0.01, true);
-		card.corner_points = approx;
-		std::cout << approx << std::endl;
+		current_card.corner_points = approx;
+		std::cout << approx << " card " << i << std::endl;
 
 		//find width and height of cards boudning rectangle
 		cv::Rect card_rect = cv::boundingRect(sorted_contours[i]);
-		card.width = card_rect.width;
-		card.height = card_rect.height;
+		current_card.height = card_rect.height;
 
 		//find centre point of card using average of x and y points
 		std::vector<int> centre_point = { (approx[1].x + approx[3].x) / 2,(approx[1].y + approx[3].y) / 2 };
-		card.centre = centre_point;
+		current_card.centre = centre_point;
 
-		flatten_card(greyscale_img_threshhold, approx, card);
-		
-		//std::cout << approx << std::endl;
-		cards.push_back(card);
+		flatten_card(greyscale_img_threshhold, approx, current_card);
+
+		cards.push_back(current_card);
 	}
 	
 };

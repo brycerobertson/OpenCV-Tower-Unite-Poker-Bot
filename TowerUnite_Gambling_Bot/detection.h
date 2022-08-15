@@ -9,7 +9,7 @@ struct Card
 {
 	int width = 0;
 	int height = 0;
-	std::vector<std::vector<cv::Point>> contour;
+	std::vector<cv::Point> contour;
 	std::vector<int> centre;
 	std::vector<cv::Point> corner_points;
 	cv::Mat warp;
@@ -29,10 +29,10 @@ private:
 
 	void filter_contours(std::vector<std::vector<cv::Point>> contours, std::vector<std::vector<cv::Point>> &sorted_contours);
 
-	void flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card);
+	auto flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card);
 	
 public:
 	void detect_cards();
 
-	void process_contours(std::vector<std::vector<cv::Point>> sorted_contours, Card& card);
+	void process_contours(std::vector<std::vector<cv::Point>> sorted_contours);
 };
