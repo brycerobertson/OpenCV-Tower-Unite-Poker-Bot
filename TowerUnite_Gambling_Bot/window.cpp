@@ -57,26 +57,28 @@ cv::Mat getMat(HWND hWnd) {
 
 cv::Mat colour_img;
 cv::Mat greyscale_img;
-cv::Mat greyscale_img_threshhold;
+cv::Mat greyscale_img_threshold;
 
 void Window::create_window() {
 
 	LPCWSTR window_title = L"Tower Unite  ";		//set title of window to search for
 	hWnd = FindWindow(NULL, window_title);			//get HWND of window title
-	cv::namedWindow("output", cv::WINDOW_AUTOSIZE); //create window named "output"
+	cv::namedWindow("OBS CAM", cv::WINDOW_AUTOSIZE); //create window named "output"
 }
 
-void Window::copy_window()	{
+void Window::copy_window(cv::VideoCapture& camera) {
 
 		/*HWND temp = GetForegroundWindow();
 		if (temp != hWnd) {
 			Sleep(10);
 			continue;
 		}*/
-
-		colour_img = getMat(hWnd);																//create Mat to copy target to
-		cv::cvtColor(colour_img, greyscale_img, cv::COLOR_BGRA2GRAY);								//convert target image to another colour space	
-
+	
+	camera.read(colour_img);
+	cv::cvtColor(colour_img, greyscale_img, 10);
+	//colour_img = getMat(hWnd);																//create Mat to copy target to
+	//cv::cvtColor(colour_img, greyscale_img, cv::COLOR_BGRA2GRAY);
+	
 };
 
 cv::Point mouse_pos;
@@ -96,8 +98,7 @@ void Window::draw_window() {
 
 	//cv::setMouseCallback("output", draw_mouse_coords);
 	//cv::putText(colour_img, mouse_pos_text, mouse_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2, 8, false);
-	cv::imshow("output", colour_img);													//show our image inside the created window.
+	cv::imshow("OBS CAM", greyscale_img_threshold);													//show our image inside the created window.
 
-	cv::imshow("card 1", cards[0].warp);
-
+	
 };

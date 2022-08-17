@@ -6,7 +6,8 @@
 
 extern cv::Mat colour_img;
 extern cv::Mat greyscale_img;
-extern cv::Mat greyscale_img_threshhold;
+extern cv::Mat greyscale_img_threshold;
+
 
 class Window{
 private:
@@ -18,7 +19,7 @@ public:
 
 	void create_window();
 
-	void copy_window();
+	void copy_window(cv::VideoCapture &camera);
 
 	void draw_window();
 };
