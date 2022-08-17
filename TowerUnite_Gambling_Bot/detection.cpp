@@ -2,10 +2,13 @@
 
 std::vector<Card> cards;
 extern std::vector<Rank> train_ranks;
+
+
+
 extern std::vector<Rank> train_suits;
 
 
-void Detection::filter_contours(std::vector<std::vector<cv::Point>> contours, std::vector<std::vector<cv::Point>> &sorted_contours) {
+void Detection::filter_contours(std::vector<std::vector<cv::Point>>& contours, std::vector<std::vector<cv::Point>>& sorted_contours) {
 	sorted_contours.clear();
 	std::vector<cv::Point> approx;
 
@@ -20,7 +23,7 @@ void Detection::filter_contours(std::vector<std::vector<cv::Point>> contours, st
 	
 };
 
-void Detection::filter_rank_suit_contours(std::vector<std::vector<cv::Point>> contours, std::vector<std::vector<cv::Point>>& sorted_contours) {
+void Detection::filter_rank_suit_contours(std::vector<std::vector<cv::Point>>& contours, std::vector<std::vector<cv::Point>>& sorted_contours) {
 	sorted_contours.clear();
 	std::vector<cv::Point> approx;
 
@@ -35,7 +38,7 @@ void Detection::filter_rank_suit_contours(std::vector<std::vector<cv::Point>> co
 
 };
 
-auto Detection::flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card) {
+auto Detection::flatten_card(cv::Mat &image, std::vector<cv::Point> &approx, Card &card) {
 	
 	int maxWidth = 250;
 	int maxHeight = 375;

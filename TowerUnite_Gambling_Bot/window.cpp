@@ -98,7 +98,7 @@ void Window::draw_window() {
 
 	//cv::setMouseCallback("output", draw_mouse_coords);
 	//cv::putText(colour_img, mouse_pos_text, mouse_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2, 8, false);
-	cv::imshow("OBS CAM", greyscale_img_threshold);													//show our image inside the created window.
+	cv::imshow("OBS CAM", colour_img);													//show our image inside the created window.
 
 	
 };

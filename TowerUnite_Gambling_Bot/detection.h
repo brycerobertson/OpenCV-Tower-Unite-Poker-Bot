@@ -21,6 +21,7 @@ struct Card
 };
 
 struct Rank {
+	cv::Mat image;
 
 };
 
@@ -69,12 +70,16 @@ private:
 
 	cv::Mat warped_image;
 
+	std::vector<std::string> rank_names {"ten","jack","queen","king","ace"};
 
-	void filter_contours(std::vector<std::vector<cv::Point>> contours, std::vector<std::vector<cv::Point>> &sorted_contours);
+	std::vector<std::string> suit_names {"heart","diamond","club","spade"};
 
-	void filter_rank_suit_contours(std::vector<std::vector<cv::Point>> contours, std::vector<std::vector<cv::Point>>& sorted_contours);
 
-	auto flatten_card(cv::Mat image, std::vector<cv::Point> approx, Card &card);
+	void filter_contours(std::vector<std::vector<cv::Point>> &contours, std::vector<std::vector<cv::Point>> &sorted_contours);
+
+	void filter_rank_suit_contours(std::vector<std::vector<cv::Point>> &contours, std::vector<std::vector<cv::Point>>& sorted_contours);
+
+	auto flatten_card(cv::Mat &image, std::vector<cv::Point> &approx, Card &card);
 	
 public:
 

@@ -12,6 +12,11 @@ int main(int argc, char** argv)	{
 	cv::VideoCapture camera(0, cv::CAP_ANY);
 	camera.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
 	camera.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
+
+	for (size_t i = 0; i < 4; i++) {
+		
+	};
+
 	while (key != 27) {
 		window.create_window();
 		window.copy_window(camera);
