@@ -21,7 +21,6 @@ struct Card
 };
 
 struct Rank {
-	cv::Mat image;
 
 };
 
@@ -31,7 +30,7 @@ struct Suit {
 
 };
 
-extern std::vector<Rank> train_suits;
+extern std::vector<Suit> train_suits;
 
 
 extern std::vector<Card> cards;
@@ -50,11 +49,11 @@ private:
 	int CORNER_HEIGHT = 95;
 
 	//Dimensions of rank train images
-	int RANK_WIDTH = 70;
-	int RANK_HEIGHT = 125;
+	int RANK_WIDTH = 80;
+	int RANK_HEIGHT = 100;
 
 	//Dimensions of suit train images
-	int SUIT_WIDTH = 70;
+	int SUIT_WIDTH = 80;
 	int SUIT_HEIGHT = 100;
 
 	int RANK_DIFF_MAX = 2000;
@@ -74,6 +73,9 @@ private:
 
 	std::vector<std::string> suit_names {"heart","diamond","club","spade"};
 
+	std::vector<cv::Mat> suit_images;
+
+	std::vector<cv::Mat> rank_images;
 
 	void filter_contours(std::vector<std::vector<cv::Point>> &contours, std::vector<std::vector<cv::Point>> &sorted_contours);
 

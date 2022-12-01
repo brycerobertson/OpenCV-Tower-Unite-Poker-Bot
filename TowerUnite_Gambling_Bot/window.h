@@ -19,8 +19,6 @@ public:
 
 	void create_window();
 
-	void copy_window(cv::VideoCapture &camera);
-
 	void draw_window();
 };
 
